@@ -1,0 +1,29 @@
+group 'com.walter.rxexample'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-rxjava-project-plugin:2.+',
+                  "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.2"
+    }
+}
+
+apply plugin: 'rxjava-project'
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.2"
+    compile 'io.reactivex:rxjava:1.1.1'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
