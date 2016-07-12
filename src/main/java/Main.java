@@ -254,5 +254,11 @@ public class Main {
         Observable.range(1, 10).takeLast(3)
         .subscribe(it -> println("TakeLast: " + it));
         println();
+
+        // Merge
+        Observable<Integer> odds = Observable.range(1, 20).filter(it -> it%2 !=0);
+        Observable<Integer> evens = Observable.range(1, 20).filter(it -> it%2 ==0);
+        Observable.merge(odds, evens).subscribe(it -> println("Merge: " + it));
+        println();
     }
 }
