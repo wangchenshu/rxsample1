@@ -6,6 +6,8 @@ import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
 import rx.subjects.ReplaySubject;
 
+import java.util.stream.IntStream;
+
 /**
  * Created by chenshuwang on 2016/7/16.
  */
@@ -39,9 +41,7 @@ public class Subject {
         Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 5; i++) {
-                    subscriber.onNext(i);
-                }
+                IntStream.range(1, 6).forEach(i -> subscriber.onNext(i));
                 subscriber.onCompleted();
             }
         })
@@ -62,9 +62,7 @@ public class Subject {
         Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 5; i++) {
-                    subscriber.onNext(i);
-                }
+                IntStream.range(1, 6).forEach(i -> subscriber.onNext(i));
                 subscriber.onCompleted();
             }
         })
@@ -81,9 +79,7 @@ public class Subject {
         Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 5; i++) {
-                    subscriber.onNext(i);
-                }
+                IntStream.range(1, 6).forEach(i -> subscriber.onNext(i));
                 subscriber.onCompleted();
             }
         })
@@ -101,9 +97,7 @@ public class Subject {
         Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 5; i++) {
-                    subscriber.onNext(i);
-                }
+                IntStream.range(1, 6).forEach(i -> subscriber.onNext(i));
                 subscriber.onCompleted();
             }
         })
