@@ -52,6 +52,26 @@ public class Subject {
         asyncSubject.onNext(5);
         println();
 
+        // Behavior Subject
+        final BehaviorSubject<Integer> behaviorSubject = BehaviorSubject.create(0);
+        behaviorSubject.onNext(1);
+        behaviorSubject.onNext(2);
+        behaviorSubject.onNext(3);
+        behaviorSubject.subscribe((it) -> println("(BehaviorSubject) it: " + it));
+
+        Observable.create(new Observable.OnSubscribe<Integer>() {
+            @Override
+            public void call(Subscriber<? super Integer> subscriber) {
+                for (int i = 0; i < 5; i++) {
+                    subscriber.onNext(i);
+                }
+                subscriber.onCompleted();
+            }
+        })
+                .doOnCompleted(() -> behaviorSubject.onNext(1)).subscribe();
+        behaviorSubject.onNext(2);
+        println();
+
         // Publish Subject
         final PublishSubject<Integer> publishSubject = PublishSubject.create();
         publishSubject.onNext(-1);
@@ -69,26 +89,6 @@ public class Subject {
         })
         .doOnCompleted(() -> publishSubject.onNext(0)).subscribe();
         publishSubject.onNext(1);
-        println();
-
-        // Behavior Subject
-        final BehaviorSubject<Integer> behaviorSubject = BehaviorSubject.create(0);
-        behaviorSubject.onNext(1);
-        behaviorSubject.onNext(2);
-        behaviorSubject.onNext(3);
-        behaviorSubject.subscribe((it) -> println("(BehaviorSubject) it: " + it));
-
-        Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 5; i++) {
-                    subscriber.onNext(i);
-                }
-                subscriber.onCompleted();
-            }
-        })
-        .doOnCompleted(() -> behaviorSubject.onNext(1)).subscribe();
-        behaviorSubject.onNext(2);
         println();
 
         // ReplaySubject Subject
